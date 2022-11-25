@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    privileged: true
+    shm_size: 2g
+    ports:
+      - "5900:5900"
+      - "4444:4444"
+  api_ext:
+    build: .
+    container_name: api_ext
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - chrome
