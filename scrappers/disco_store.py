@@ -15,7 +15,7 @@ class HomeDisco:
         self.bot = BotController(your_driver=driver)
         self.bot.get_page(self.url, delay_after=2)
         if page_number > 1:
-            for times in range(page_number - 1):
+            for times in range(page_number):
                 self.click_show_more()
         self.scroll_botton_page()
         final_dict = {"records": [{"marca": e[0], "descripcion": e[1], "precio": self.__clean_price(e[2])} for e in
