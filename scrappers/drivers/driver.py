@@ -11,7 +11,10 @@ def get_chrome_driver_local(headless=False):
 
 
 def get_chrome_driver_docker():
+    opt = Options()
+    opt.add_argument("--no-sandbox")
+    opt.add_argument("--disable-dev-shm-usage")
     browser = webdriver.Remote(
         command_executor='http://chrome:4444/wd/hub',
-        desired_capabilities=DesiredCapabilities.CHROME)
+        desired_capabilities=DesiredCapabilities.CHROME,options=opt)
     return browser
